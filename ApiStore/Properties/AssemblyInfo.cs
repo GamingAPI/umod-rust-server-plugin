@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BBlackhawkApi")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("GamingEventPlugins")]
+[assembly: AssemblyDescription("Rust plugins for sharing events with the GamingEventAPI network")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("BBlackhawkApi")]
+[assembly: AssemblyProduct("GamingEventPlugins")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

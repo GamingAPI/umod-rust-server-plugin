@@ -7,8 +7,8 @@
     <ProjectGuid>{E3B20E54-ACFF-4CB1-A5EC-97EB6AB462EF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BlackhawkPlugins</RootNamespace>
-    <AssemblyName>BlackhawkPlugins</AssemblyName>
+    <RootNamespace>GamingEventPlugins</RootNamespace>
+    <AssemblyName>GamingEventPlugins</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -38,13 +38,6 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="standard-configs\BBlackhawkApi.json" />
-    <None Include="standard-configs\DiscordMessages.json" />
-    <None Include="standard-configs\HooksExtended.json" />
-    <None Include="standard-configs\PlayerReport.json" />
-    <None Include="standard-configs\RealtimeWipeInfo.json" />
-    <None Include="standard-configs\Tickets.json" />
-    <None Include="standard-configs\Vanish.json" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
