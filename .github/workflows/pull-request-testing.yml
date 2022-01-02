@@ -1,0 +1,25 @@
+name: Pull request testing
+
+on:
+  pull_request
+
+jobs:
+  build:
+    runs-on: windows-latest
+ 
+    steps:
+    - uses: actions/checkout@v1
+      name: Checkout Code
+
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.1
+       
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1
+     
+    - name: Restore NuGet Packages
+      run: nuget restore GamingEventPlugins.sln
+ 
+    - name: Build and Publish Web App
+      run: msbuild GamingEventPlugins.sln /p:Configuration=Release
+ 
