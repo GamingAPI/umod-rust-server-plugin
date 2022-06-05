@@ -42,7 +42,7 @@ jobs:
         run: dotnet pack --configuration Release GamingAPIPlugins
       - if: steps.version_bump.outputs.wasBumped == 'true' 
         name: Publish the package to GitHub registry
-        run: dotnet nuget push GamingAPIPlugins/bin/Release/*.nupkg --api-key ${{secrets.GITHUB_TOKEN}}
+        run: dotnet nuget push GamingAPIPlugins/bin/Release/*.nupkg --api-key ${{secrets.GITHUB_TOKEN}} --source "https://nuget.pkg.github.com/GamingAPI/index.json"
       - if: steps.version_bump.outputs.wasBumped == 'true'
         name: Create Pull Request with bumped version
         uses: peter-evans/create-pull-request@v3
