@@ -189,18 +189,11 @@
     <Reference Include="Novell.Directory.Ldap">
       <HintPath>Managed\Novell.Directory.Ldap.dll</HintPath>
     </Reference>
-    <Reference Include="Org.OpenAPITools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Oxide.Ext.Blackhawk\release\Org.OpenAPITools.dll</HintPath>
-    </Reference>
     <Reference Include="Oxide.Core">
       <HintPath>Managed\Oxide.Core.dll</HintPath>
     </Reference>
     <Reference Include="Oxide.CSharp">
       <HintPath>Managed\Oxide.CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Oxide.Ext.Blackhawk">
-      <HintPath>..\..\Oxide.Ext.Blackhawk\release\Oxide.Ext.Blackhawk.dll</HintPath>
     </Reference>
     <Reference Include="Oxide.MySql">
       <HintPath>Managed\Oxide.MySql.dll</HintPath>
