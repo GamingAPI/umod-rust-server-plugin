@@ -23,7 +23,7 @@ jobs:
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: Set github credentials
-        run: dotnet nuget add source --username ${{env.GH_USER}} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name gamingapi "https://nuget.pkg.github.com/GamingAPI/index.json"
+        run: dotnet nuget add source --username ${{env.GH_USER}} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name gamingapi-github "https://nuget.pkg.github.com/GamingAPI/index.json"
       - name: Install dependencies
         run: dotnet restore
       - name: 'Automated Version Bump'
