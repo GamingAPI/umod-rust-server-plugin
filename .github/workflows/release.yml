@@ -33,7 +33,7 @@ jobs:
         with: 
           skip-tag: 'true'
           skip-commit: 'true'
-          path-to-file: './GamingAPIPlugins\GamingAPIPlugins.csproj'
+          path-to-file: './GamingAPIPlugins/GamingAPIPlugins.csproj'
           release-commit-message-regex: 'chore\(release\): v{{version}}'
       - if: steps.version_bump.outputs.wasBumped == 'true' 
         run: dotnet build --configuration Release GamingAPIPlugins
