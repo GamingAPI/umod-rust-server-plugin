@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GamingEventPlugins</RootNamespace>
     <AssemblyName>GamingEventPlugins</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="plugins\GamingAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -241,9 +243,6 @@
     </Reference>
     <Reference Include="Rust.World">
       <HintPath>Managed\Rust.World.dll</HintPath>
-    </Reference>
-    <Reference Include="RustApi">
-      <HintPath>Managed\RustApi.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers">
@@ -491,8 +490,11 @@
       <HintPath>Managed\UnityEngine.XRModule.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="plugins\" />
+    <PackageReference Include="Oxide.Ext.GamingApi">
+      <Version>0.3.0</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

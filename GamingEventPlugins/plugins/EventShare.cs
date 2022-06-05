@@ -1,5 +1,5 @@
-﻿using Oxide.Ext.GamingEvent;MessageQueue
-using Oxide.Ext.GamingEvent.MessageQueue;
+﻿using Oxide.Ext.GamingEventApi;
+using Oxide.Ext.GamingEventApi.MessageQueue;
 using RequestForServerPlayerCombatPlayerhitNameSpace;
 using RequestForServerPlayerConnectedNameSpace;
 using RequestForServerPlayerDisconnectedNameSpace;
@@ -16,7 +16,7 @@ namespace Oxide.Plugins
         private void Init()
         {
             Puts("Starting plugin");
-            GamingEventMessageQueue.Instance.AddToMessageQueue(MessageImportance.NORMAL, (System.Action success, System.Action failed) =>
+            GamingEventApiMessageQueue.Instance.AddToMessageQueue(MessageImportance.NORMAL, (System.Action success, System.Action failed) =>
             {
                 var resp = DefaultPluginInformation.GetInstance().NatsClient.RequestRustApiprocessServersServerIdEventsStarted(DefaultPluginInformation.GetServerId());
                 if (resp.StatusCode != 200)
@@ -42,7 +42,7 @@ namespace Oxide.Plugins
         #region Resource gathering
         private void ResourceGathered(BasePlayer player, Item item)
         {
-            GamingEventMessageQueue.Instance.AddToMessageQueue(MessageImportance.NORMAL, (System.Action success, System.Action failed) =>
+            GamingEventApiMessageQueue.Instance.AddToMessageQueue(MessageImportance.NORMAL, (System.Action success, System.Action failed) =>
             {
                 var resp = DefaultPluginInformation.GetInstance().NatsClient.RequestRustApiprocessServersServerIdPlayersSteamIdEventsResourcesGathered(ConvertToResouceRequestMessage(item, player), DefaultPluginInformation.GetServerId(), player.IPlayer.Id);
                 if (resp.StatusCode != 200)
@@ -107,7 +107,7 @@ namespace Oxide.Plugins
          **/
         void OnPlayerRespawned(BasePlayer player)
         {
-            GamingEventMessageQueue.Instance.AddToMessageQueue(MessageImportance.LOW, (System.Action success, System.Action failed) =>
+            GamingEventApiMessageQueue.Instance.AddToMessageQueue(MessageImportance.LOW, (System.Action success, System.Action failed) =>
             {
                 RequestForServerPlayerRespawned playerRespawn = new RequestForServerPlayerRespawned
                 {
@@ -146,7 +146,7 @@ namespace Oxide.Plugins
             p.Player = dp;
             p.Reason = reason;
             //Must be the lowest importance to ensure all other events are are processed first
-            GamingEventMessageQueue.Instance.AddToMessageQueue(MessageImportance.LOWEST, (System.Action success, System.Action failed) =>
+            GamingEventApiMessageQueue.Instance.AddToMessageQueue(MessageImportance.LOWEST, (System.Action success, System.Action failed) =>
             {
 
                 var resp = DefaultPluginInformation.GetInstance().NatsClient.RequestRustApiprocessServersServerIdPlayersSteamIdEventsDisconnected(p, DefaultPluginInformation.GetServerId(), player.IPlayer.Id);
@@ -177,7 +177,7 @@ namespace Oxide.Plugins
             };
             p.Player = p2;
 
-            GamingEventMessageQueue.Instance.AddToMessageQueue(MessageImportance.IMPORTANT, (System.Action success, System.Action failed) =>
+            GamingEventApiMessageQueue.Instance.AddToMessageQueue(MessageImportance.IMPORTANT, (System.Action success, System.Action failed) =>
             {
                 var resp = DefaultPluginInformation.GetInstance().NatsClient.RequestRustApiprocessServersServerIdPlayersSteamIdEventsConnected(p, DefaultPluginInformation.GetServerId(), player.IPlayer.Id);
                 if (resp.StatusCode != 200)
@@ -197,7 +197,7 @@ namespace Oxide.Plugins
          **/
         void OnNewSave(string filename)
         {
-            GamingEventMessageQueue.Instance.AddToMessageQueue(MessageImportance.STRICT, (System.Action success, System.Action failed) =>
+            GamingEventApiMessageQueue.Instance.AddToMessageQueue(MessageImportance.STRICT, (System.Action success, System.Action failed) =>
             {
                 var resp = DefaultPluginInformation.GetInstance().NatsClient.RequestRustApiprocessServersServerIdEventsWiped(DefaultPluginInformation.GetServerId());
                 if (resp.StatusCode != 200)
@@ -225,7 +225,7 @@ namespace Oxide.Plugins
                 PickupTimestamp = System.DateTime.Now.ToString(),
                 Amount = 1
             };
-            GamingEventMessageQueue.Instance.AddToMessageQueue(MessageImportance.IMPORTANT, (System.Action success, System.Action failed) =>
+            GamingEventApiMessageQueue.Instance.AddToMessageQueue(MessageImportance.IMPORTANT, (System.Action success, System.Action failed) =>
             {
                 var resp = DefaultPluginInformation.GetInstance().NatsClient.RequestRustApiprocessServersServerIdPlayersSteamIdEventsItemsItemIdPickup(i, DefaultPluginInformation.GetServerId(), player.IPlayer.Id, "" + item.info.itemid);
                 if (resp.StatusCode != 200)
@@ -295,7 +295,7 @@ namespace Oxide.Plugins
                 victimSwagger.ActiveItem = victimItem;
                 poph.Victim = victimSwagger;
                 pophWrapper.PlayerHit = poph;
-                GamingEventMessageQueue.Instance.AddToMessageQueue(MessageImportance.IMPORTANT, (System.Action success, System.Action failed) =>
+                GamingEventApiMessageQueue.Instance.AddToMessageQueue(MessageImportance.IMPORTANT, (System.Action success, System.Action failed) =>
                 {
                     var resp = DefaultPluginInformation.GetInstance().NatsClient.RequestRustApiprocessServersServerIdPlayersSteamIdEventsCombatPlayerhit(pophWrapper, DefaultPluginInformation.GetServerId(), player.IPlayer.Id);
                     if (resp.StatusCode != 200)

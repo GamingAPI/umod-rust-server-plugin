@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 15.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamingEventPlugins", "ApiStore\GamingEventPlugins.csproj", "{E3B20E54-ACFF-4CB1-A5EC-97EB6AB462EF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamingAPIPlugins", "ApiStore\GamingAPIPlugins.csproj", "{E3B20E54-ACFF-4CB1-A5EC-97EB6AB462EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
