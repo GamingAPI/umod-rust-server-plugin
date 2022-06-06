@@ -41,6 +41,30 @@ jobs:
         name: Create the package
         run: dotnet pack --configuration Release GamingAPIPlugins
       - if: steps.version_bump.outputs.wasBumped == 'true' 
+        name: Create GH release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{steps.version_bump.outputs.newVersion}}
+          release_name: v${{steps.version_bump.outputs.newVersion}}
+          body: |
+            New server extension release v${{steps.version_bump.outputs.newVersion}}
+          draft: false
+          prerelease: false
+      - if: steps.version_bump.outputs.wasBumped == 'true' 
+        name: Upload files to github release
+        uses: xresloader/upload-to-github-release@v1.3.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          file: "./GamingAPIPlugins/bin/Release/net461/GamingAPIPlugins.dll;./GamingAPIPlugins/bin/Release/net461/NATS.Client.dll;./GamingAPIPlugins/bin/Release/net461/RustGameAPI.dll;./GamingAPIPlugins/bin/Release/net461/Newtonsoft.Json.dll;./GamingAPIPlugins/bin/Release/net461/GamingAPIPlugins.dll"
+          release_id: ${{ steps.create_release.outputs.id }}
+          overwrite: true
+          verbose: true
+          draft: false
+      - if: steps.version_bump.outputs.wasBumped == 'true' 
         name: Publish the package to GitHub registry
         run: dotnet nuget push GamingAPIPlugins/bin/Release/*.nupkg --api-key ${{secrets.GITHUB_TOKEN}} --source "https://nuget.pkg.github.com/GamingAPI/index.json"
       - if: steps.version_bump.outputs.wasBumped == 'true'
