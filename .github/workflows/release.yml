@@ -56,7 +56,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          file: "./GamingAPIPlugins/bin/Release/net461/Oxide.Ext.GamingApi.dll;./GamingAPIPlugins/bin/Release/net461/NATS.Client.dll;./GamingAPIPlugins/bin/Release/net461/RustGameAPI.dll;./GamingAPIPlugins/bin/Release/net461/Newtonsoft.Json.dll;./GamingAPIPlugins/bin/Release/net461/GamingAPIPlugins.dll"
+          file: "./GamingAPIPlugins/bin/Release/net461/Oxide.Ext.GamingApi.dll;./GamingAPIPlugins/bin/Release/net461/NATS.Client.dll;./GamingAPIPlugins/bin/Release/net461/RustGameAPI.dll;./GamingAPIPlugins/bin/Release/net461/Newtonsoft.Json.dll;./GamingAPIPlugins/plugins/GamingAPI.cs"
           release_id: ${{ steps.create_release.outputs.id }}
           overwrite: true
           verbose: true

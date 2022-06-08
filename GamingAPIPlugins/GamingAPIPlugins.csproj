@@ -449,6 +449,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Oxide.Ext.GamingApi" Version="0.9.0"/>
+    <PackageReference Include="Oxide.Ext.GamingApi" Version="0.10.0" />
   </ItemGroup>
 </Project>

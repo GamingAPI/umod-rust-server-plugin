@@ -7,7 +7,7 @@ namespace Oxide.Plugins
 {
     [Info("GamingAPI", "jonaslagoni", "0.0.2")]
     [Description("Share all the in-game events with the GamingAPI network")]
-    class Processor : RustPlugin
+    class GamingAPI : RustPlugin
     {
         private void Init()
         {
@@ -30,14 +30,14 @@ namespace Oxide.Plugins
             {
                 ChatMessage chatMessage = new ChatMessage
                 {
-                    SteamId = player.IPlayer.Id,
+                    SteamId = player.UserIDString,
                     Timestamp = System.DateTime.Now.ToString(),
                     FullMessage = message,
                     IsAdmin = player.IsAdmin,
                     PlayerName = player.displayName
                 };
 
-                DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdEventsPlayerSteamIdChatted(chatMessage, DefaultPluginInformation.GetServerId(), player.IPlayer.Id);
+                DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdEventsPlayerSteamIdChatted(chatMessage, DefaultPluginInformation.GetServerId(), player.UserIDString);
             });
             return null;
         }
