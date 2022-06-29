@@ -451,4 +451,9 @@
   <ItemGroup>
     <PackageReference Include="Oxide.Ext.GamingApi" Version="0.10.0"/>
   </ItemGroup>
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>UnitTestProject2</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
 </Project>
