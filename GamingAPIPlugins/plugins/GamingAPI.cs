@@ -19,7 +19,7 @@ namespace Oxide.Plugins
                 {
                     Timestamp = System.DateTime.Now.ToString()
                 };
-                DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdEventsStarted(message, DefaultPluginInformation.GetServerId());
+                DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdEventsStartedJetStream(message, DefaultPluginInformation.GetServerId());
             });
         }
         
@@ -42,7 +42,7 @@ namespace Oxide.Plugins
                     PlayerName = player.displayName
                 };
 
-                DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdEventsPlayerSteamIdChatted(chatMessage, DefaultPluginInformation.GetServerId(), player.UserIDString);
+                DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdEventsPlayerSteamIdChattedJetStream(chatMessage, DefaultPluginInformation.GetServerId(), player.UserIDString);
             });
             return null;
         }
@@ -54,7 +54,7 @@ namespace Oxide.Plugins
         {
             GamingApiMessageQueue.Instance.AddToMessageQueue(MessageImportance.NORMAL, (System.Action success, System.Action failed) =>
             {
-                DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdPlayersSteamIdEventsGatheredResources(ConvertToResouceRequestMessage(item, player), DefaultPluginInformation.GetServerId(), player.IPlayer.Id);
+                DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdPlayersSteamIdEventsGatheredResourcesJetStream(ConvertToResouceRequestMessage(item, player), DefaultPluginInformation.GetServerId(), player.IPlayer.Id);
             });
         }
 
@@ -122,7 +122,7 @@ namespace Oxide.Plugins
                     }
                 };
 
-                DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdPlayersSteamIdEventsRespawned(playerRespawn, DefaultPluginInformation.GetServerId(), player.IPlayer.Id);
+                DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdPlayersSteamIdEventsRespawnedJetStream(playerRespawn, DefaultPluginInformation.GetServerId(), player.IPlayer.Id);
             });
         }
 
@@ -140,7 +140,7 @@ namespace Oxide.Plugins
             //Must be the lowest importance to ensure all other events are are processed first
             GamingApiMessageQueue.Instance.AddToMessageQueue(MessageImportance.LOWEST, (System.Action success, System.Action failed) =>
             {
-                DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdPlayersSteamIdEventsDisconnected(p, DefaultPluginInformation.GetServerId(), player.IPlayer.Id);
+                DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdPlayersSteamIdEventsDisconnectedJetStream(p, DefaultPluginInformation.GetServerId(), player.IPlayer.Id);
             });
         }
 
@@ -161,7 +161,7 @@ namespace Oxide.Plugins
 
             GamingApiMessageQueue.Instance.AddToMessageQueue(MessageImportance.IMPORTANT, (System.Action success, System.Action failed) =>
             {
-                DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdPlayersSteamIdEventsConnected(p, DefaultPluginInformation.GetServerId(), player.IPlayer.Id);
+                DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdPlayersSteamIdEventsConnectedJetStream(p, DefaultPluginInformation.GetServerId(), player.IPlayer.Id);
             });
         }
 
@@ -172,7 +172,7 @@ namespace Oxide.Plugins
         {
             GamingApiMessageQueue.Instance.AddToMessageQueue(MessageImportance.STRICT, (System.Action success, System.Action failed) =>
             {
-                DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdEventsWiped(DefaultPluginInformation.GetServerId());
+                DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdEventsWipedJetStream(DefaultPluginInformation.GetServerId());
             });
         }
 
@@ -191,7 +191,7 @@ namespace Oxide.Plugins
             };
             GamingApiMessageQueue.Instance.AddToMessageQueue(MessageImportance.IMPORTANT, (System.Action success, System.Action failed) =>
             {
-                DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdPlayersSteamIdEventsItemsItemIdPickup(i, DefaultPluginInformation.GetServerId(), player.IPlayer.Id, "" + item.info.itemid);
+                DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdPlayersSteamIdEventsItemsItemIdPickupJetStream(i, DefaultPluginInformation.GetServerId(), player.IPlayer.Id, "" + item.info.itemid);
             });
         }
 
@@ -254,7 +254,7 @@ namespace Oxide.Plugins
                 poph.SteamId = attacker.IPlayer.Id;
                 GamingApiMessageQueue.Instance.AddToMessageQueue(MessageImportance.IMPORTANT, (System.Action success, System.Action failed) =>
                 {
-                    DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdPlayersSteamIdEventsCombatHit(pophWrapper, DefaultPluginInformation.GetServerId(), player.IPlayer.Id);
+                    DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdPlayersSteamIdEventsCombatHitJetStream(pophWrapper, DefaultPluginInformation.GetServerId(), player.IPlayer.Id);
                 });
             });
         }
