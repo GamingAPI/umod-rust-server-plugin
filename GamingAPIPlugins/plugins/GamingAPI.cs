@@ -22,7 +22,7 @@ namespace Oxide.Plugins
                 DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdEventsStartedJetStream(message, DefaultPluginInformation.GetServerId());
             });
         }
-        
+
         protected override void LoadDefaultConfig()
         {
             Config["ShouldBroadcastNotifications"] = true;
