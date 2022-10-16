@@ -1,27 +1,25 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using Oxide.Plugins;
-using System.Reflection;
-using System.Collections.Generic;
-using ConVar;
-using Oxide.Ext.GamingApi.MessageQueue;
+using Asyncapi.Nats.Client.Models;
+using NUnit.Framework;
+using System.Text.Json;
 
-namespace Test
+namespace GamingAPIPluginTest
 {
-    [TestClass]
-    public class UnitTest1
+    public class Tests
     {
-        [TestMethod]
-        public void TestMethod1()
+        [SetUp]
+        public void Setup()
         {
-            GamingAPI plugin = new GamingAPI();
-            MethodInfo methodInfo = typeof(GamingAPI).GetMethod("OnPlayerChat", BindingFlags.NonPublic | BindingFlags.Instance);
-            var p = new BasePlayer();
-            p.UserIDString = "test";
-            p.displayName = "test"; 
-            object[] parameters = { p, "test", Chat.ChatChannel.Global };
-            methodInfo.Invoke(plugin, parameters);
-            Assert.AreEqual(GamingApiMessageQueue.Instance.GetCurrentMessagesInQueue(), 1);
+        }
+
+        [Test]
+        public void Test1()
+        {
+            ServerStarted temp = new ServerStarted();
+            temp.Timestamp = "Test";
+            string json = JsonSerializer.Serialize(temp);
+            ServerStarted output = JsonSerializer.Deserialize<ServerStarted>(json);
+            string json2 = JsonSerializer.Serialize(output);
+            Assert.AreEqual(json, json2);
         }
     }
 }

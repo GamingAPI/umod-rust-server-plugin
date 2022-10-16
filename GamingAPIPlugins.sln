@@ -4,7 +4,7 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 15.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamingAPIPlugins", "GamingAPIPlugins\GamingAPIPlugins.csproj", "{E3B20E54-ACFF-4CB1-A5EC-97EB6AB462EF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamingAPIPluginsTest", "TestProject3\GamingAPIPluginsTest.csproj", "{17A7063D-50C2-48B0-B0BD-886109DA412D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamingAPIPluginsTest", "GamingAPIPluginsTest\GamingAPIPluginsTest.csproj", "{FC952EF7-5A85-4CD0-B963-4CF9B2E04AA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,10 +16,10 @@ Global
 		{E3B20E54-ACFF-4CB1-A5EC-97EB6AB462EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3B20E54-ACFF-4CB1-A5EC-97EB6AB462EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3B20E54-ACFF-4CB1-A5EC-97EB6AB462EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{17A7063D-50C2-48B0-B0BD-886109DA412D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17A7063D-50C2-48B0-B0BD-886109DA412D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{17A7063D-50C2-48B0-B0BD-886109DA412D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{17A7063D-50C2-48B0-B0BD-886109DA412D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC952EF7-5A85-4CD0-B963-4CF9B2E04AA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC952EF7-5A85-4CD0-B963-4CF9B2E04AA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC952EF7-5A85-4CD0-B963-4CF9B2E04AA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC952EF7-5A85-4CD0-B963-4CF9B2E04AA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
