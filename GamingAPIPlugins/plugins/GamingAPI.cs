@@ -2,6 +2,7 @@
 using ConVar;
 using Oxide.Ext.GamingApi;
 using Oxide.Ext.GamingApi.MessageQueue;
+using System;
 using Player = Asyncapi.Nats.Client.Models.Player;
 
 namespace Oxide.Plugins
@@ -13,13 +14,24 @@ namespace Oxide.Plugins
         private void Init()
         {
             Puts("Starting plugin");
-            GamingApiMessageQueue.Instance.AddToMessageQueue(MessageImportance.NORMAL, (System.Action success, System.Action failed) =>
+            GamingApiMessageQueue.Instance.AddToMessageQueue(MessageImportance.NORMAL, (System.Action success, System.Action failure) =>
             {
                 ServerStarted message = new ServerStarted
                 {
                     Timestamp = System.DateTime.Now.ToString()
                 };
-                DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdEventsStartedJetStream(message, DefaultPluginInformation.GetServerId());
+                try
+                {
+                    Puts("Sending message");
+                    DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdEventsStartedJetStream(message, DefaultPluginInformation.GetServerId());
+                    success();
+                }
+                catch(Exception e)
+                {
+                    Puts("Failed sending message");
+                    Puts(e.ToString());
+                    failure();
+                }
             });
         }
 
@@ -121,7 +133,7 @@ namespace Oxide.Plugins
                         Z = player.transform.position.z
                     }
                 };
-
+                
                 DefaultPluginInformation.GetInstance().NatsClient.PublishToV0RustServersServerIdPlayersSteamIdEventsRespawnedJetStream(playerRespawn, DefaultPluginInformation.GetServerId(), player.IPlayer.Id);
             });
         }
@@ -260,6 +272,7 @@ namespace Oxide.Plugins
         }
         #endregion
 
+        public static GamingAPI Instance() { return new GamingAPI(); }
     }
 
 }
