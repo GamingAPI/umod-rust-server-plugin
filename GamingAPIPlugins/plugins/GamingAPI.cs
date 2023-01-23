@@ -208,6 +208,11 @@ namespace Oxide.Plugins
         object OnLootItem(PlayerLoot playerLoot, Item item)
         {
             BasePlayer player = playerLoot.GetComponent<BasePlayer>();
+            if (player == null)
+            {
+                Puts("On item loot player null");
+                return null;
+            }
             ServerPlayerItemLoot i = new ServerPlayerItemLoot
             {
                 ItemId = item.info.itemid,
@@ -245,6 +250,11 @@ namespace Oxide.Plugins
         void OnPlayerBanned(string name, ulong id, string address, string reason)
         {
             BasePlayer player = BasePlayer.Find(id + "");
+            if (player == null)
+            {
+                Puts("On player banned not found");
+                return;
+            }
             TimeSpan banTimeRemaining = player.IPlayer.BanTimeRemaining;
             ServerPlayerBanned i = new ServerPlayerBanned
             {
@@ -278,6 +288,11 @@ namespace Oxide.Plugins
 
         object OnServerCommand(ConsoleSystem.Arg arg)
         {
+            if(arg.Args == null)
+            {
+                Puts("On server command args null");
+                return null;
+            }
             ServerCommand i = new ServerCommand
             {
                 Timestamp = System.DateTime.Now.ToString(),
@@ -351,6 +366,9 @@ namespace Oxide.Plugins
                        DefaultPluginInformation.GetInstance().NatsClient.JetStreamPublishToV0RustServersServerIdPlayersSteamIdEventsCombatHit(pophWrapper, DefaultPluginInformation.GetServerId(), player.IPlayer.Id);
                    });
                });
+            } else
+            {
+                Puts("Attack skipped");
             }
 
             return null;
