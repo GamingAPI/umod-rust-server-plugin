@@ -286,25 +286,25 @@ namespace Oxide.Plugins
             });
         }
 
-        object OnServerCommand(ConsoleSystem.Arg arg)
-        {
-            if(arg.Args == null)
-            {
-                Puts("On server command args null");
-                return null;
-            }
-            ServerCommand i = new ServerCommand
-            {
-                Timestamp = System.DateTime.Now.ToString(),
-                Command = arg.cmd.Name,
-                Arguments = string.Join(" ", arg.Args)
-            };
-            GamingApiMessageQueue.Instance.AddToMessageQueue(MessageImportance.LOW, (System.Action success, System.Action failed) =>
-            {
-                DefaultPluginInformation.GetInstance().NatsClient.JetStreamPublishToV0RustServersServerIdEventsCommand(i, DefaultPluginInformation.GetServerId());
-            });
-            return null;
-        }
+        // object OnServerCommand(ConsoleSystem.Arg arg)
+        // {
+        //     if(arg.Args == null)
+        //     {
+        //         Puts("On server command args null");
+        //         return null;
+        //     }
+        //     ServerCommand i = new ServerCommand
+        //     {
+        //         Timestamp = System.DateTime.Now.ToString(),
+        //         Command = arg.cmd.Name,
+        //         Arguments = string.Join(" ", arg.Args)
+        //     };
+        //     GamingApiMessageQueue.Instance.AddToMessageQueue(MessageImportance.LOW, (System.Action success, System.Action failed) =>
+        //     {
+        //         DefaultPluginInformation.GetInstance().NatsClient.JetStreamPublishToV0RustServersServerIdEventsCommand(i, DefaultPluginInformation.GetServerId());
+        //     });
+        //     return null;
+        // }
 
         /**
         * When players are damaged
