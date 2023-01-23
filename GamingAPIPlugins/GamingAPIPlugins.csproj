@@ -453,7 +453,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Oxide.Ext.GamingApi" Version="0.19.0"/>
+    <PackageReference Include="Oxide.Ext.GamingApi" Version="0.22.0"/>
   </ItemGroup>
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
