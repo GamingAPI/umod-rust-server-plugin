@@ -3,6 +3,8 @@ using ConVar;
 using Oxide.Ext.GamingApi;
 using Oxide.Ext.GamingApi.MessageQueue;
 using System;
+using System.Configuration;
+using System.IO;
 
 namespace Oxide.Plugins
 {
