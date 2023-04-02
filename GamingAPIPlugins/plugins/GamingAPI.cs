@@ -62,31 +62,31 @@ namespace Oxide.Plugins
         public class Configuration
         {
             [JsonProperty(PropertyName = "If true, when a player writes in the chat the event will be saved")]
-            public bool onChat = false;
+            public bool onChat = true;
             [JsonProperty(PropertyName = "If true, when a player farms a resource the event will be saved")]
-            public bool onResourceGathered = false;
+            public bool onResourceGathered = true;
             [JsonProperty(PropertyName = "If true, when a player respawns the event will be saved")]
-            public bool onRespawn = false;
+            public bool onRespawn = true;
             [JsonProperty(PropertyName = "If true, when a player disconnects the event will be saved")]
-            public bool onPlayerDisconnected = false;
+            public bool onPlayerDisconnected = true;
             [JsonProperty(PropertyName = "If true, when a player connects the event will be saved")]
-            public bool onPlayerConnected = false;
+            public bool onPlayerConnected = true;
             [JsonProperty(PropertyName = "If true, when the server wipes the event will be saved")]
-            public bool onWipe = false;
+            public bool onWipe = true;
             [JsonProperty(PropertyName = "If true, when a player crafts an item the event will be saved")]
-            public bool onCrafted = false;
+            public bool onCrafted = true;
             [JsonProperty(PropertyName = "If true, when a player is banned the event will be saved")]
-            public bool onBanned = false;
+            public bool onBanned = true;
             [JsonProperty(PropertyName = "If true, when a player is reported the event will be saved")]
-            public bool onReportedd = false;
+            public bool onReportedd = true;
             [JsonProperty(PropertyName = "If true, when a server command is run the event will be saved")]
-            public bool onServerCommand = false;
+            public bool onServerCommand = true;
             [JsonProperty(PropertyName = "If true, when a player hits another player the event will be saved")]
-            public bool onPlayerHit = false;
+            public bool onPlayerHit = true;
             [JsonProperty(PropertyName = "If true, when a player picks up an item the event will be saved")]
-            public bool onItemPickup = false;
+            public bool onItemPickup = true;
             [JsonProperty(PropertyName = "If true, when a player loots an item the event will be saved")]
-            public bool onitemLooted = false;
+            public bool onitemLooted = true;
 
             public static Configuration DefaultConfig()
             {
