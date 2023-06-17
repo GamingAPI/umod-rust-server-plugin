@@ -207,13 +207,13 @@ namespace Oxide.Plugins
                 if (item != null)
                 {
                     re.ItemId = item.info.itemid;
-                    re.ItemUid = unchecked((int)item.uid);
+                    re.ItemUid = unchecked((int)item.uid.Value);
                 }
                 if (player != null)
                 {
                     ActiveItem gatheringItem = new ActiveItem
                     {
-                        Uid = unchecked((int)(player.GetActiveItem() == null ? 0 : player.GetActiveItem().uid)),
+                        Uid = unchecked((int)(player.GetActiveItem() == null ? 0 : player.GetActiveItem().uid.Value)),
                         ItemId = unchecked((int)(player.GetActiveItem() == null ? 0 : player.GetActiveItem().info.itemid))
                     };
                     PlayerPosition gatheringPosition = new PlayerPosition
@@ -245,13 +245,13 @@ namespace Oxide.Plugins
                 {
                     re.Amount = item.amount;
                     re.ItemId = item.info.itemid;
-                    re.ItemUid = unchecked((int)item.uid);
+                    re.ItemUid = unchecked((int)item.uid.Value);
                 }
                 if (player != null)
                 {
                     ActiveItem gatheringItem = new ActiveItem
                     {
-                        Uid = unchecked((int)(player.GetActiveItem() == null ? 0 : player.GetActiveItem().uid)),
+                        Uid = unchecked((int)(player.GetActiveItem() == null ? 0 : player.GetActiveItem().uid.Value)),
                         ItemId = unchecked((int)(player.GetActiveItem() == null ? 0 : player.GetActiveItem().info.itemid))
                     };
                     PlayerPosition gatheringPosition = new PlayerPosition
@@ -385,7 +385,7 @@ namespace Oxide.Plugins
             ServerPlayerItemCrafted i = new ServerPlayerItemCrafted
             {
                 ItemId = item.info.itemid,
-                ItemUid = unchecked((int)item.uid),
+                ItemUid = unchecked((int)item.uid.Value),
                 SteamId = player.IPlayer.Id,
                 CraftTimestamp = System.DateTime.Now.ToString(),
                 Amount = item.amount
@@ -443,6 +443,7 @@ namespace Oxide.Plugins
             {
                 Timestamp = System.DateTime.Now.ToString(),
                 Command = arg.cmd.Name,
+                SteamId = arg.Player().IPlayer.Id,
                 Arguments = string.Join(" ", arg.Args)
             };
             GamingApiMessageQueue.Instance.AddToMessageQueue(MessageImportance.LOW, (System.Action success, System.Action failed) =>
@@ -479,7 +480,7 @@ namespace Oxide.Plugins
                    //attackerSwagger.Position = attackerPos;
                    ActiveItem attackerItem = new ActiveItem
                    {
-                       Uid = unchecked((int)(attacker.GetActiveItem() == null ? 0 : attacker.GetActiveItem().uid)),
+                       Uid = unchecked((int)(attacker.GetActiveItem() == null ? 0 : attacker.GetActiveItem().uid.Value)),
                        ItemId = attacker.GetActiveItem() == null ? 0 : attacker.GetActiveItem().info.itemid
                    };
                    poph.ActiveItem = attackerItem;
@@ -496,7 +497,7 @@ namespace Oxide.Plugins
                    //victimSwagger.Position = victimPos;
                    //VictimActiveItem victimItem = new VictimActiveItem
                    //{
-                   //    Uid = unchecked((int)(player.GetActiveItem() == null ? 0 : player.GetActiveItem().uid)),
+                   //    Uid = unchecked((int)(player.GetActiveItem() == null ? 0 : player.GetActiveItem().uid.Value)),
                    //    ItemId = unchecked((int)(player.GetActiveItem() == null ? 0 : player.GetActiveItem().info.itemid))
                    //};
                    //victimSwagger.ActiveItem = victimItem;
@@ -520,7 +521,7 @@ namespace Oxide.Plugins
             ServerPlayerItemPickup i = new ServerPlayerItemPickup
             {
                 ItemId = item.info.itemid,
-                ItemUid = unchecked((int)item.uid),
+                ItemUid = unchecked((int)item.uid.Value),
                 SteamId = player.IPlayer.Id,
                 PickupTimestamp = System.DateTime.Now.ToString(),
                 Amount = item.amount
@@ -532,7 +533,7 @@ namespace Oxide.Plugins
             return null;
         }
 
-        private Dictionary<uint, List<LocalItem>> containerItems = new Dictionary<uint, List<LocalItem>>();
+        private Dictionary<ulong, List<LocalItem>> containerItems = new Dictionary<ulong, List<LocalItem>>();
 
         private class LocalItem : IEquatable<LocalItem>
         {
@@ -578,26 +579,26 @@ namespace Oxide.Plugins
             }
             List<LocalItem> items = new List<LocalItem>();
             List<Item> inventoryList = new List<Item>();
-            uint containerId = 0;
+            ulong containerId = 0;
             if(container != null)
             {
                 inventoryList = container.inventory.itemList;
-                containerId = container.net.ID;
+                containerId = container.net.ID.Value;
             } else if (droppedContainer != null)
             {
                 inventoryList = droppedContainer.inventory.itemList;
-                containerId = droppedContainer.net.ID;
+                containerId = droppedContainer.net.ID.Value;
             } else if (lootableCorpse != null)
             {
                 foreach (ItemContainer lootableContainer in lootableCorpse.containers)
                 {
                     inventoryList.AddRange(lootableContainer.itemList);
                 }
-                containerId = lootableCorpse.net.ID;
+                containerId = lootableCorpse.net.ID.Value;
             }
             foreach (Item item in inventoryList)
             {
-                items.Add(new LocalItem { amount = item.amount, itemid = item.info.itemid, itemUid = (int)item.uid });
+                items.Add(new LocalItem { amount = item.amount, itemid = item.info.itemid, itemUid = (int)item.uid.Value });
             }
             containerItems[containerId] = items;
         }
@@ -613,16 +614,16 @@ namespace Oxide.Plugins
                 return;
             }
             List<Item> inventoryList = new List<Item>();
-            uint containerId = 0;
+            ulong containerId = 0;
             if (container != null)
             {
                 inventoryList = container.inventory.itemList;
-                containerId = container.net.ID;
+                containerId = container.net.ID.Value;
             }
             else if (droppedContainer != null)
             {
                 inventoryList = droppedContainer.inventory.itemList;
-                containerId = droppedContainer.net.ID;
+                containerId = droppedContainer.net.ID.Value;
             }
             else if (lootableCorpse != null)
             {
@@ -630,7 +631,7 @@ namespace Oxide.Plugins
                 {
                     inventoryList.AddRange(lootableContainer.itemList);
                 }
-                containerId = lootableCorpse.net.ID;
+                containerId = lootableCorpse.net.ID.Value;
             }
 
             List<LocalItem> initialItems;
